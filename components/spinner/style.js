@@ -1,12 +1,9 @@
 import styled from "styled-components";
+import { FlexWrapper } from "../globals";
 
-export const SpinnerWrapper = styled.div`
+export const SpinnerWrapper = styled(FlexWrapper)`
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 `;
 
 export const CustomLoader = styled.div`
