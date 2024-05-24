@@ -17,10 +17,11 @@ export const LoginPage = () => {
   const schema = yup.object().shape({
     username: yup.string().required("Required"),
     password: yup.string()
-      .min(5, 'Debe de tener al menos 5 caracteres')
+      .min(5, 'Debe de tener al menos 6 caracteres')
       .max(18, 'Debe tener máximo de 18 caracteres')
       .matches(/(?=.*\W)/, 'Debe de contener un cáracter especial')
       .matches(/[?=.*0-9]/, 'Debe de contener al menos un numero')
+      .matches(/[?=.*A-Z]/, 'Debe de contener al menos una mayúscula')
       .required("Required"),
   })
 
@@ -33,10 +34,10 @@ export const LoginPage = () => {
     errorLogin: "",
   });
 
-  const url = "https://randomuser.me/api/?password=special,upper,lower,number,5-18";
+  const url = "https://randomuser.me/api/?password=number,special,upper,lower,6-18";
   const { data: dataApi, isLoading } = useFetch(url);
   const { results = [] } = !!dataApi && dataApi;
-  
+
 
   const onSubmit = (data) => {
     const { username, password } = data;
