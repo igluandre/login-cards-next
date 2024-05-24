@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { useFetch } from "../../hooks/useFetch";
 
 import { Card, Navbar, Spinner } from "@/components";
-import { CardWrapper, Container, Section } from "./style";
+import { CardWrapper, Section } from "./style";
+import { Container } from "@/components/globals";
 
 
 export const CardsPage = () => {
