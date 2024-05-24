@@ -1,2 +1,2 @@
-export * from './cards-page/cards-section/CardsPage'
+export * from './cards-page/CardsPage'
 export * from './login-page/LoginPage'

@@ -1,27 +1,11 @@
 'use client'
 
 import { useEffect, useMemo, useState, useRef } from "react";
-import { useFetch } from "../../../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 
-import styled from "styled-components";
 import { Card, Navbar, Spinner } from "@/components";
+import { CardWrapper, Container, Section } from "./style";
 
-const Section = styled.section`
-  margin: 30px 0px;
-`;
-
-const Container = styled.div`
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 40px;
-  overflow: auto;
-`;
-
-const CardWrapper = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-`;
 
 export const CardsPage = () => {
   const randomNumber = useMemo(() => {
