@@ -6,3 +6,10 @@ export const Container = styled.div`
     padding: 0 40px;
     overflow: auto;
 `;
+
+export const FlexWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+`;
