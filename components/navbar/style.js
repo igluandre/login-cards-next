@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Container, FlexWrapper } from "../globals";
 
 export const Header = styled.header`
     height: 70px;
@@ -6,24 +7,16 @@ export const Header = styled.header`
     padding: 5px 0px;
 `;
 
-export const Container = styled.div`
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 0 40px;
-    overflow: auto;
+export const NavContainer = styled(Container)`
     display: flex;
     justify-content: end;
     align-items: center;
     height: 100%;
 `;
 
-export const Nav = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+export const Nav = styled(FlexWrapper)`
     gap: 30px; 
-`
+`;
 
 export const NavbarButton = styled.button`
     border-radius: 5px;
