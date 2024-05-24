@@ -33,42 +33,26 @@ export const LoginPage = () => {
     errorLogin: "",
   });
 
-  const url = "https://randomuser.me/api";
+  const url = "https://randomuser.me/api/?password=special,upper,lower,number,5-18";
   const { data: dataApi, isLoading } = useFetch(url);
   const { results = [] } = !!dataApi && dataApi;
-
-  const newPassword = useMemo(() => {
-    if (results[0]?.login.password) {
-      let currentPassword = (results[0]?.login.password)?.split('');
-      const specialCharacteres = '@.#$!%*?&^';
-      const randomNumberCharacter = Math.floor(Math.random() * currentPassword?.length);
-      const randomNumber = Math.floor(Math.random() * currentPassword?.length);
-      currentPassword.splice(randomNumberCharacter, 0, specialCharacteres[randomNumberCharacter])
-      currentPassword.splice(randomNumber, 0, randomNumber)
-
-    return currentPassword.join('')
-    }else{
-      return results[0]?.login.password
-    }
-
-}, [dataApi]);
-
+  
 
   const onSubmit = (data) => {
     const { username, password } = data;
     if (username.length <= 1 || password.length <= 1) return;
 
-    if (username.trim() !== results[0]?.login.username && password.trim() === newPassword) {
+    if (username.trim() !== results[0]?.login.username && password.trim() === results[0]?.login.password) {
       setIsFormValid({
         isValid: false,
         errorLogin: 'El username es incorrecto'
       });
-    }else if(username.trim() === results[0]?.login.username && password.trim() !== newPassword){
+    }else if(username.trim() === results[0]?.login.username && password.trim() !== results[0]?.login.password){
       setIsFormValid({
         isValid: false,
         errorLogin: 'La contraseña es incorrecta'
       });
-    }else if (username.trim() !== results[0]?.login.username && password.trim() !== newPassword) {
+    }else if (username.trim() !== results[0]?.login.username && password.trim() !== results[0]?.login.password) {
       setIsFormValid({
         isValid: false,
         errorLogin: 'Username o contraseña inválidos'
@@ -97,7 +81,7 @@ export const LoginPage = () => {
                 <strong>Username:</strong> {results[0]?.login.username}
               </ParagraphUserData>
               <ParagraphUserData>
-                <strong>Password:</strong> {newPassword}
+                <strong>Password:</strong> {results[0]?.login.password}
               </ParagraphUserData>
             </UserDataWrapper>
           )}
