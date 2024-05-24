@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { useFetch  } from "../../hooks/useFetch";
 import { FormWrapper, H2, Input, InputWrapper, ParagraphError, ParagraphUserData, Section, SubmitButton, UserDataWrapper, Form } from "./style";
 
@@ -34,10 +34,9 @@ export const LoginPage = () => {
     errorLogin: "",
   });
 
-  const url = "https://randomuser.me/api/?password=number,special,upper,lower,6-18";
+  const url = "https://randomuser.me/api/?password=number,special,upper,lower,8-18";
   const { data: dataApi, isLoading } = useFetch(url);
-  const { results = [] } = !!dataApi && dataApi;
-
+  const { results = [] } = !!dataApi && dataApi; 
 
   const onSubmit = (data) => {
     const { username, password } = data;
@@ -71,16 +70,18 @@ export const LoginPage = () => {
         <FormWrapper>
           <H2>Login</H2>
 
-          {!isLoading && (
-            <UserDataWrapper>
-              <ParagraphUserData>
-                <strong>Username:</strong> {results[0]?.login.username}
-              </ParagraphUserData>
-              <ParagraphUserData>
-                <strong>Password:</strong> {results[0]?.login.password}
-              </ParagraphUserData>
-            </UserDataWrapper>
-          )}
+          {
+            (!isLoading) && (
+              <UserDataWrapper>
+                <ParagraphUserData>
+                  <strong>Username:</strong> {results[0]?.login.username}
+                </ParagraphUserData>
+                <ParagraphUserData>
+                  <strong>Password:</strong> {results[0]?.login.password}
+                </ParagraphUserData>
+              </UserDataWrapper>
+            )
+          }
 
           <Form onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
