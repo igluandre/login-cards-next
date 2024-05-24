@@ -43,26 +43,21 @@ export const LoginPage = () => {
     const { username, password } = data;
     if (username.length <= 1 || password.length <= 1) return;
 
-    if (username.trim() !== results[0]?.login.username && password.trim() === results[0]?.login.password) {
+    if(username.trim() === results[0]?.login.username && password.trim() === results[0]?.login.password){
+      login(username);
       setIsFormValid({
-        isValid: false,
-        errorLogin: 'El username es incorrecto'
+        isValid: true,
+        errorLogin: ''
       });
     }else if(username.trim() === results[0]?.login.username && password.trim() !== results[0]?.login.password){
       setIsFormValid({
         isValid: false,
         errorLogin: 'La contraseña es incorrecta'
       });
-    }else if (username.trim() !== results[0]?.login.username && password.trim() !== results[0]?.login.password) {
+    }else {
       setIsFormValid({
         isValid: false,
         errorLogin: 'Username o contraseña inválidos'
-      });
-    }else{
-      login(username);
-      setIsFormValid({
-        isValid: true,
-        errorLogin: ''
       });
     }
 
