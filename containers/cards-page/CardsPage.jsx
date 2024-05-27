@@ -14,7 +14,7 @@ export const CardsPage = () => {
   }, []);
 
   const url = `https://fakerapi.it/api/v1/companies?_quantity=${randomNumber}`;
-  const { data, isLoading } = useFetch(url);
+  const { data } = useFetch(url);
   const { data: results } = !!data && data;
   const [copyListCards, setCopyListCards] = useState([]);
 
@@ -23,7 +23,7 @@ export const CardsPage = () => {
 
   useEffect(() => {
     setCopyListCards(results);
-  }, [isLoading]);
+  }, [results]);
 
 
   return (
@@ -33,7 +33,7 @@ export const CardsPage = () => {
       <Section>
         <Container>
           <CardWrapper>
-            {isLoading ? (
+            {(!copyListCards) ? (
               <Spinner />
             ) : (
               copyListCards?.map((card, index) => (
