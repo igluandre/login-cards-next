@@ -7,14 +7,14 @@ export const useFetch = (url = "") => {
     hasError: null,
   });
 
-  const getFetch = async () => {
+  const getFetch = async ( controller ) => {
     setIsState({
       ...isState,
       isLoading: true,
     });
 
     try {
-      const resp = await fetch(url);
+      const resp = await fetch(url, { signal: controller.signal });
       const data = await resp.json();
 
       setIsState({
@@ -30,9 +30,17 @@ export const useFetch = (url = "") => {
       });
     }
   };
+  
+
 
   useEffect(() => {
-    getFetch();
+
+    const controller = new AbortController();
+
+    getFetch(controller);
+
+    return () => controller.abort();
+    
   }, [url]);
 
   return {
